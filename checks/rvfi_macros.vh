@@ -8,6 +8,8 @@
 
 // added myself
 `define RISCV_FORMAL_CHANNEL_IDX 0
+`define RISCV_FORMAL_CHECKER rvfi_insn_check
+`define RISCV_FORMAL_INSN_MODEL rvfi_insn_@insn@
 //
 
 `ifdef YOSYS

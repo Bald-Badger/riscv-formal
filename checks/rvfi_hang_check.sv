@@ -11,7 +11,7 @@
 // WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 // ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 // OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
+`include "rvfi_macros.vh"
 module rvfi_hang_check (
 	input clock, reset, trig, check,
 	`RVFI_INPUTS
@@ -34,7 +34,7 @@ module rvfi_hang_check (
 		for (channel_idx = 0; channel_idx < `RISCV_FORMAL_NRET; channel_idx=channel_idx+1) begin
 			if (rvfi_valid[channel_idx]) begin
 				assume(!rvfi_halt[channel_idx]);
-				assume(rvfi_insn[(channel_idx+1)*`RISCV_FORMAL_ILEN-1 : channel_idx*`RISCV_FORMAL_ILEN] != 32'b 0001000_00101_00000_000_00000_1110011); // WFI
+				//assume(rvfi_insn[(channel_idx+1)*`RISCV_FORMAL_ILEN-1 : channel_idx*`RISCV_FORMAL_ILEN] != 32'b 0001000_00101_00000_000_00000_1110011); // WFI
 `ifdef RISCV_FORMAL_WAITINSN
 				assume(!(`RISCV_FORMAL_WAITINSN(rvfi_insn[(channel_idx+1)*`RISCV_FORMAL_ILEN-1 : channel_idx*`RISCV_FORMAL_ILEN])));
 `endif
